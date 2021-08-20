@@ -39,7 +39,7 @@ stages:
           $(tag)
     - publish: '$(Build.SourcesDirectory)/manifests'
       artifact: manifests
-
+  
 - stage: 'Deploy'
   displayName: 'Deploy the containers'
   dependsOn: Build
@@ -57,6 +57,7 @@ stages:
           steps:
           - download: current
             artifact: manifests
+
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:

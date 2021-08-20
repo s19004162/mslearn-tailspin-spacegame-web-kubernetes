@@ -40,12 +40,11 @@ stages:
     - publish: '$(Build.SourcesDirectory)/manifests'
       artifact: manifests
 
-lockBehavior:
 - stage: 'Deploy'
   displayName: 'Deploy the container'
   dependsOn: Build
   jobs:
-  - job: 'Deploy'
+  - deployment: Deploy
     displayName: 'Deploy job'
     pool:
       vmImage: 'ubuntu-20.04'
